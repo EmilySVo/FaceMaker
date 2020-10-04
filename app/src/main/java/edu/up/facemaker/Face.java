@@ -24,7 +24,7 @@ public class Face {
     Paint eyePaint = new Paint();
     Paint hairPaint = new Paint();
 
-    /**
+    /** 
      * Face() Constructor
      * Constructor creates a randomized face using randomize().
      */
