@@ -8,21 +8,42 @@
 
 package edu.up.facemaker;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.SurfaceView;
+
 import java.util.Random;
 
-public class Face {
+public class Face extends SurfaceView {
+    //instance variables for randomizing values
     private int skinColor;
     private int eyeColor;
     private int hairColor;
     private int hairStyle;
+
+    //paints we will use to draw the face
+    Paint facePaint = new Paint();
+    Paint eyePaint = new Paint();
+    Paint hairPaint = new Paint();
 
     /**
      * Face() Constructor
      * Constructor creates a randomized face using randomize().
      */
 
-    Face() {
+    public Face(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        setWillNotDraw(false);
         randomize();
+
+        //set corresponding colors
+        facePaint.setColor(Color.BLUE);
+        facePaint.setStyle(Paint.Style.FILL);
+        eyePaint.setColor(this.eyeColor);
+        hairPaint.setColor(this.hairColor);
     }
 
     /**
@@ -34,24 +55,30 @@ public class Face {
         Random r = new Random();
 
         //randomizes the values of colors using hexadecimal
-        this.skinColor = r.nextInt(0xffffff+1);
-        this.eyeColor = r.nextInt(0xffffff+1);
-        this.hairColor = r.nextInt(0xffffff+1);
+        this.skinColor = r.nextInt(0xffffffff+1);
+        this.eyeColor = r.nextInt(0xffffffff+1);
+        this.hairColor = r.nextInt(0xffffffff+1);
 
         //randomizes the assigned hair number
         this.hairStyle = r.nextInt(5);
-        }
-            /**
-             * External Citation
-             * Date: September 9, 2020
-             * Problem: Did not remember how to get random numbers
-             * Resource: https://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
-             * Solution: Found the import and functions required.
-             *
-             * Date: September 9, 2020
-             * Problem: Forgot that we can use hexadecimals to store colors in java
-             * Resource: Andrew Nuxoll
-             * Solution: Reminded me that colors can be stored using hexadecimals
-             */
     }
+    /**
+     * External Citation
+     * Date: September 9, 2020
+     * Problem: Did not remember how to get random numbers
+     * Resource: https://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+     * Solution: Found the import and functions required.
+     *
+     * Date: September 9, 2020
+     * Problem: Forgot that we can use hexadecimals to store colors in java
+     * Resource: Andrew Nuxoll
+     * Solution: Reminded me that colors can be stored using hexadecimals
+     */
+
+
+    public void onDraw(Canvas canvas){
+        //draw the base of the face
+        canvas.drawCircle(10.0f, 10.0f, 100, facePaint);
+    }
+}
 
