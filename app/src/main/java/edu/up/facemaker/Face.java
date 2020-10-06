@@ -59,6 +59,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
     /**
      * Face() Constructor
      * Constructor creates a randomized face using randomize().
+     * Sets background to white and creates a random face
      */
 
     public Face(Context context, AttributeSet attrs) {
@@ -76,6 +77,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
 
     public void randomize() {
         Random r = new Random();
+        //randomizes values of colors
         skinR = r.nextInt(256);
         skinG = r.nextInt(256);
         skinB = r.nextInt(256);
@@ -86,7 +88,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
         hairG = r.nextInt(256);
         hairB = r.nextInt(256);
 
-        //randomizes the values of colors using hexadecimal
+        //assigns colors with randomized values
         this.skinColor = Color.argb(255, skinR, skinG, skinB);
         this.eyeColor = Color.argb(255, eyeR, eyeG, eyeB);
         this.hairColor = Color.argb(255, hairR, hairG, hairB);
@@ -95,7 +97,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
         //randomizes the assigned hair number
         this.hairStyle = r.nextInt(4);
 
-        //set corresponding colors
+        //set corresponding colors and styles for the paints
         eyeWhite.setColor(Color.WHITE);
         eyeWhite.setStyle(Paint.Style.FILL);
         pupilBlack.setColor(Color.BLACK);
@@ -135,11 +137,13 @@ public class Face extends SurfaceView implements View.OnClickListener,
         //draw the base of the face
         canvas.drawCircle(800.0f, 550.0f, 400, this.facePaint);
 
-        //draw eyes
+        //draw eye whites
         canvas.drawCircle(600.0f, 450.0f, 100, eyeWhite);
         canvas.drawCircle(1000.0f, 450.0f, 100, eyeWhite);
+        //eye iris
         canvas.drawCircle(600f, 450.0f, 70, this.eyePaint);
         canvas.drawCircle(1000f, 450f, 70f, eyePaint);
+        //eye pupils
         canvas.drawCircle(600f, 450f, 50f, pupilBlack);
         canvas.drawCircle(1000f, 450f, 50f, pupilBlack);
 
@@ -168,7 +172,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
             canvas.drawRect(400f, 50f, 1200f, 550f, hairPaint);
         }
         else{
-            //bald hairstyle
+            //bald hairstyle, nothing is drawn
         }
         return;
     }
@@ -179,7 +183,8 @@ public class Face extends SurfaceView implements View.OnClickListener,
      */
     @Override
     public void onClick(View v) {
-        Log.i("clicked","yes");
+        Log.i("clicked","yes"); //checks if button has been clicked in logcat
+        //calls to randomize variables then redraws the face
         randomize();
         invalidate();
     }
@@ -264,6 +269,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
      * @param radioButton
      */
     public void setSeekBarProgress(int radioButton){
+        //depending on which radioButton state we are in, update according values
         switch(radioButton){
             case 0:
                 this.redBar.setProgress(this.eyeR);
@@ -286,7 +292,9 @@ public class Face extends SurfaceView implements View.OnClickListener,
     /**
      * setSeekBar method
      * gets references to seekBars from MainActivity
-     * @param seekBar
+     * @param redBar
+     * @param greenBar
+     * @param blueBar
      */
     public void setSeekBar(SeekBar redBar, SeekBar greenBar, SeekBar blueBar){
         this.redBar = redBar;
@@ -330,7 +338,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
                 Log.i("2:","selected");
                 break;
         }
-        invalidate();
+        invalidate(); //will call ondraw again to update seekbars
     }
 
     /**
@@ -343,7 +351,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        this.hairStyle = position;
+        this.hairStyle = position; //sets hairStyle to current position
         invalidate();
     }
 
