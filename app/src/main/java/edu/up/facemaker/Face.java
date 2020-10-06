@@ -2,8 +2,7 @@
  * @author Emily Vo
  * Date: September 9th 2020
  * Face Class
- * includes components that will randomize and make up
- * a face
+ * includes components that will randomize and make up a face
  */
 
 package edu.up.facemaker;
@@ -24,6 +23,13 @@ import java.util.Random;
 public class Face extends SurfaceView implements View.OnClickListener,
         SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener,
         AdapterView.OnItemSelectedListener {
+
+    //listener view
+    private SeekBar redBar = null;
+    private SeekBar greenBar = null;
+    private SeekBar blueBar = null;
+
+
     //instance variables for randomizing values
     private int skinColor;
     private int eyeColor;
@@ -59,9 +65,9 @@ public class Face extends SurfaceView implements View.OnClickListener,
         super(context, attrs);
         setWillNotDraw(false);
         setBackgroundColor(Color.WHITE);
-
         randomize();
     }
+
 
     /**
      * randomize() method
@@ -249,26 +255,22 @@ public class Face extends SurfaceView implements View.OnClickListener,
         invalidate();
     }
 
-    public void seekBarProgress(){
-        SeekBar red = findViewById(R.id.redbar);
-        SeekBar green = findViewById(R.id.greenbar);
-        SeekBar blue = findViewById(R.id.bluebar);
-
-        switch(this.radioButton){
+    public void seekBarProgress(int radioButton){
+        switch(radioButton){
             case 0:
-                red.setProgress(eyeR);
-                green.setProgress(eyeG);
-                blue.setProgress(eyeB);
+                this.redBar.setProgress(this.eyeR);
+                this.greenBar.setProgress(this.eyeG);
+                this.blueBar.setProgress(this.eyeB);
                 break;
             case 1:
-                red.setProgress(hairR);
-                green.setProgress(hairG);
-                blue.setProgress(hairR);
+                this.redBar.setProgress(this.hairR);
+                this.greenBar.setProgress(this.hairG);
+                this.blueBar.setProgress(this.hairR);
                 break;
             case 2:
-                red.setProgress(skinR);
-                green.setProgress(skinG);
-                blue.setProgress(skinB);
+                this.redBar.setProgress(this.skinR);
+                this.greenBar.setProgress(this.skinG);
+                this.blueBar.setProgress(this.skinB);
                 break;
         }
     }
@@ -292,7 +294,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
      */
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-       //assigns variable to keep track of which option we are on
+        //assigns variable to keep track of which option we are on
         switch(checkedId){
             case R.id.eyebutton:
                 this.radioButton = 0;
@@ -305,27 +307,6 @@ public class Face extends SurfaceView implements View.OnClickListener,
             case R.id.skinbutton:
                 this.radioButton = 2;
                 Log.i("2:","selected");
-                break;
-        }
-        SeekBar red = findViewById(R.id.redbar);
-        SeekBar green = findViewById(R.id.greenbar);
-        SeekBar blue = findViewById(R.id.bluebar);
-
-        switch(this.radioButton) {
-            case 0:
-                red.setProgress(eyeR);
-                green.setProgress(eyeG);
-                blue.setProgress(eyeB);
-                break;
-            case 1:
-                red.setProgress(hairR);
-                green.setProgress(hairG);
-                blue.setProgress(hairR);
-                break;
-            case 2:
-                red.setProgress(skinR);
-                green.setProgress(skinG);
-                blue.setProgress(skinB);
                 break;
         }
         invalidate();
