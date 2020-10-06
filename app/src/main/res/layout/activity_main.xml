@@ -13,8 +13,8 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <SurfaceView
-            android:id="@+id/surfaceView"
+        <edu.up.facemaker.Face
+            android:id="@+id/face"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -43,23 +43,26 @@
             android:textSize="24sp" />
 
         <RadioGroup
+            android:id="@+id/radiogroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/hairbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="false"
                 android:text="Hair" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/eyebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="Eyes" />
 
             <RadioButton
-                android:id="@+id/radioButton3"
+                android:id="@+id/skinbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Skin" />
@@ -80,10 +83,11 @@
             android:text="Red" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/redbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FF8888"
+            android:max="255"
             android:progressBackgroundTint="#FF8181"
             android:progressTint="#FF0000" />
 
@@ -94,9 +98,10 @@
             android:text="Green" />
 
         <SeekBar
-            android:id="@+id/seekBar2"
+            android:id="@+id/greenbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:max="255"
             android:progressBackgroundTint="#637E64"
             android:progressTint="#4CAF50" />
 
@@ -107,9 +112,10 @@
             android:text="Blue" />
 
         <SeekBar
-            android:id="@+id/seekBar3"
+            android:id="@+id/bluebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:max="255"
             android:progressBackgroundTint="#606585"
             android:progressTint="#092EFF" />
 
@@ -128,7 +134,7 @@
             android:background="#BFBFBF" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/randombutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
