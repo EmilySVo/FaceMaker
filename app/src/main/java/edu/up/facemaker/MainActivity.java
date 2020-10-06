@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 greenValue.setOnSeekBarChangeListener(faceView);
                 SeekBar blueValue = (SeekBar) findViewById(R.id.bluebar);
                 blueValue.setOnSeekBarChangeListener(faceView);
+                //gives Face access to seekbars to change seekBar values
+                faceView.setSeekBar(redValue, greenValue, blueValue);
 
                 //implements the radio buttons
                 RadioGroup radioButtons = findViewById(R.id.radiogroup);

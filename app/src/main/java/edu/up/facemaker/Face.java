@@ -24,7 +24,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
         SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener,
         AdapterView.OnItemSelectedListener {
 
-    //listener view
+    //get references to seekbars
     private SeekBar redBar = null;
     private SeekBar greenBar = null;
     private SeekBar blueBar = null;
@@ -126,6 +126,9 @@ public class Face extends SurfaceView implements View.OnClickListener,
      * A method for the surfaceview to draw what we want onto it
      */
     public void onDraw(Canvas canvas){
+        //set the seekBar values based on what is drawn
+        setSeekBarProgress(this.radioButton);
+
         //draw the hair
         drawHair(canvas);
 
@@ -255,7 +258,12 @@ public class Face extends SurfaceView implements View.OnClickListener,
         invalidate();
     }
 
-    public void seekBarProgress(int radioButton){
+    /**
+     * setSeekBarProgress method
+     * A helper method to help set the seekbar values whenever the rgb values are changed
+     * @param radioButton
+     */
+    public void setSeekBarProgress(int radioButton){
         switch(radioButton){
             case 0:
                 this.redBar.setProgress(this.eyeR);
@@ -265,7 +273,7 @@ public class Face extends SurfaceView implements View.OnClickListener,
             case 1:
                 this.redBar.setProgress(this.hairR);
                 this.greenBar.setProgress(this.hairG);
-                this.blueBar.setProgress(this.hairR);
+                this.blueBar.setProgress(this.hairB);
                 break;
             case 2:
                 this.redBar.setProgress(this.skinR);
@@ -274,6 +282,19 @@ public class Face extends SurfaceView implements View.OnClickListener,
                 break;
         }
     }
+
+    /**
+     * setSeekBar method
+     * gets references to seekBars from MainActivity
+     * @param seekBar
+     */
+    public void setSeekBar(SeekBar redBar, SeekBar greenBar, SeekBar blueBar){
+        this.redBar = redBar;
+        this.greenBar = greenBar;
+        this.blueBar = blueBar;
+        return;
+    }
+
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         //not required
