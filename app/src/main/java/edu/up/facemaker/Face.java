@@ -1,8 +1,9 @@
 /**
  * @author Emily Vo
- * Date: September 9th 2020
+ * Date: October 6th, 2020
  * Face Class
- * includes components that will randomize and make up a face
+ * When opened, a randomized face with appropriate values will be given
+ * The user is then able to edit components to create a face they desire
  */
 
 package edu.up.facemaker;

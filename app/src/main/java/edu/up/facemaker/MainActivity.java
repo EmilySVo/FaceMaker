@@ -1,6 +1,8 @@
 /**
  * @author Emily Vo
- * Date: September 9th, 2020
+ * Date: October 6th, 2020
+ * MainActivity for face maker
+ * Sets all listeners and makes sure Face has access to seekbars
  */
 
 package edu.up.facemaker;
@@ -13,7 +15,6 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SeekBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
